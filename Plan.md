@@ -24,9 +24,9 @@ Where r_i_j is a distance between particles and h is a smoothing radius and m_j 
 
 To calculate pressure for each particle I will use an Equation Of State
 
-    P = ρ * R * T
+    P = K * ( ρ - ρ_0 )
 
-Where P is pressure, ρ is density, R is Gas Constant, T is temperature in Kelvin
+Where P is pressure, ρ is density, K is Isotropic Constant, ρ_0 is Base Density
 
 ## 4. Force Computation
 
