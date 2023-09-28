@@ -18,7 +18,7 @@ const double P_MASS{1.5};    // particle mass
 const double ISOTROPIC_EXPONENT{50.0};
 const double BASE_DENSITY{4.0};
 const double DAMPING_COEFFICIENT{-0.5};
-const double DYNAMIC_VISCOSITY{20.0};
+const double DYNAMIC_VISCOSITY{25.0};
 const int TIME_STEP{5}; // milliseconds
 Eigen::Vector2d GRAVITY_FORCE{0, 1000.0};
 
