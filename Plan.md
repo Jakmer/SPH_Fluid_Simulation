@@ -30,14 +30,20 @@ Where P is pressure, ρ is density, K is Isotropic Constant, ρ_0 is Base Densit
 
 ## 4. Force Computation
 
-To calculate force acting of each particle I need to include pressure force and external force (in this case Gravity). The force is crucial aspect for the particle motion. To calculate pressure force I will use **GRADIENT OF SMOOTHING KERNEL FUNCTION** assigned as **▽W(r_i_j)**
+To calculate force acting of each particle I need to include pressure force , viscosity force and external force (in this case Gravity). The force is crucial aspect for the particle motion. To calculate pressure force I will use **GRADIENT OF SMOOTHING KERNEL FUNCTION** assigned as **▽W(r_i_j)**
 
     ▽W(r_i_j) = ( - 45 * (h - r)^2 ) / ( PI * h^6 )
 
+    F_p = - Σ_j ( m_j * ( P_i + P_j ) * ▽W(r^_i_j) ) / ( 2 * ρ_i  )
+
+To calculate viscosity force I will use **- GRADIENT OF SMOOTHING KERNEL FUNCTION** assigned as **-▽W(r_i_j)**
+
+    F_v = Σ_j ( m_j * ( v_j - v_i ) * - ▽W(r^_i_j) ) / ( ρ_i )
+
 Finally
 
-    F_p = - Σ_j ( m_j * ( P_i + P_j ) * ▽W(r^_i_j) ) / ( 2 * ρ_i * ρ_j )
-    F_w = F_p + F_g
+    
+    F_w = F_p + F_v + F_g
 
 Where ρ - density, F_g = gravity force, P - pressure, m - mass, F_w - total force, F_p - pressure force
 
@@ -47,7 +53,7 @@ Update the positions and velocities of particles based on the forces computed in
 
 - Update velocities
 
-  u_i = u_i + Δt * F_w / m_i
+  u_i = u_i + Δt * F_w / ρ_i
 
 - Update positions
 
